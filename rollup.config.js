@@ -1,5 +1,5 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
     input: 'index.js',
@@ -9,15 +9,14 @@ export default {
         name: 'venn',
         globals: {
             'd3-selection': 'd3',
-            'd3-transition': 'd3'
+            'd3-transition': 'd3',
         }
     },
     plugins: [
         resolve({
-            jsnext: true,
-            only: ['fmin'],
-            main: true
+            resolveOnly: [/^d3-/],
+            modulesOnly: true
         }),
-        commonjs()
+        commonjs(),
     ]
 };
